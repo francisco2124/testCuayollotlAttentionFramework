@@ -1,5 +1,6 @@
 package test.attentionframework.Lobes.TemporalLobe;
 
+import static java.lang.Math.random;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,6 +8,7 @@ import java.util.List;
 import test.attentionframework.Client.client;
 import test.attentionframework.Server.WorkingMemory;
 import test.attentionframework.spike.Spike;
+import java.util.Random;
 
 public class STG {
     
@@ -67,12 +69,23 @@ public class STG {
     
     private static void processSpatialCue(List<String> elements, List<Object> information, Spike s, WorkingMemory workingMemory) throws RemoteException {
         int index = workingMemory.getRelevantPosition(); // Índice del elemento central
-
+        
+        //Random **************
+        Random random = new Random();
+        
         // Verificar que el índice central esté dentro del rango permitido
         if (index >= 2 && index <= elements.size() - 3) {
-            String centralElement = elements.get(index);
+            //String centralElement = elements.get(index);
+            
+            //random***************
+            // Elegir aleatoriamente uno de los elementos adyacentes incluyendo el central
+            int randomOffset = random.nextInt(5) - 2; // Genera un número entre -2 y 2
+            int randomIndex = index + randomOffset;
+            String centralElement = elements.get(randomIndex);
+            
+            
 
-            // Acceder a los elementos adyacentes solo una vez
+            // Acceder a los elementos adyacentes 
             if (centralElement.equals(elements.get(index - 1)) &&
                 centralElement.equals(elements.get(index - 2)) &&
                 centralElement.equals(elements.get(index + 1)) &&
@@ -94,6 +107,13 @@ public class STG {
         String elementtarget = "";
         boolean foundTarget = false;
         int index = 0 ;
+        
+        
+        //elemntos random***************
+        Random random = new Random();
+        List<Integer> fIndices = new ArrayList<>();
+        
+        
         // Búsqueda de secuencias que contienen 'F'
         for (int i = 0; i <= elements.size() - 5; i++) {
             if (elements.get(i).contains("F") &&
@@ -103,10 +123,20 @@ public class STG {
                 elements.get(i + 4).contains("F")) {
                 foundTarget = true;
                 index = i + 4;
+                
+               
+            
                 elementtarget = elements.get(i);
                 
                 break;
             }
+        }
+        
+        //Random*******************
+        if (!fIndices.isEmpty()) {
+            int randomIndex = random.nextInt(fIndices.size());
+            index = fIndices.get(randomIndex) + 4;
+            elementtarget = elements.get(fIndices.get(randomIndex));
         }
 
         boolean checkTarget = false;
@@ -137,6 +167,11 @@ public class STG {
         boolean foundTarget = false;
         System.out.println(workingMemory.getRelevantPosition());
         int index = 0 ;
+        
+        //elemntos random***************
+        Random random = new Random();
+        List<Integer> fIndices = new ArrayList<>();
+        
         // Búsqueda de secuencias que contienen 'F'
         for (int i = 0; i <= elements.size() - 5; i++) {
             if (elements.get(i).contains("F") &&
@@ -146,12 +181,17 @@ public class STG {
                 elements.get(i + 4).contains("F")) {
                 foundTarget = true;
                 index = i +4;
+                
+                //agregar indice de secuencia Random******
+                fIndices.add(i); // Agrega el índice de la secuencia encontrada
+               
                 elementtarget = elements.get(i);
                 
                 break;
             }
         }
         
+        /*
         for (int i = 0; i <= elements.size() - 5; i++) {
             if (elements.get(i).contains("F") &&
                 elements.get(i + 1).contains("F") &&
@@ -160,12 +200,23 @@ public class STG {
                 elements.get(i + 4).contains("F")) {
                 foundTarget = true;
                 index = i + 4;
+                
+                
                 elementtarget = elements.get(i);
                 
                 break;
             }
         }
-
+        */
+        
+        //random*******************
+        // Selecciona aleatoriamente uno de los índices de las secuencias encontradas
+        if (!fIndices.isEmpty()) {
+            int randomIndex = random.nextInt(fIndices.size());
+            index = fIndices.get(randomIndex) + 4;
+            elementtarget = elements.get(fIndices.get(randomIndex));
+        }
+        
         boolean checkTarget = false;
         
         if (index >= 2 && index <= elements.size() - 3) {

@@ -62,10 +62,11 @@ public class Spike implements Serializable {
         validDestinations.put("IPS", new HashSet<>(Arrays.asList("FEF","TPJ")));
         validDestinations.put("FEF", new HashSet<>(Arrays.asList("IPL")));
         validDestinations.put("IPL", new HashSet<>(Arrays.asList("TPJ")));
-        validDestinations.put("TPJ", new HashSet<>(Arrays.asList("IPS", "STS", "IFG", "fO")));
+        validDestinations.put("TPJ", new HashSet<>(Arrays.asList("IPS", "STS", "MFG", "DecisionMaking")));
         validDestinations.put("STS", new HashSet<>(Arrays.asList("STG", "VLPFC")));
         validDestinations.put("VLPFC", new HashSet<>(Arrays.asList("STS", "DLPFC")));
         validDestinations.put("STG", new HashSet<>(Arrays.asList("TPJ")));
+        validDestinations.put("MFG", new HashSet<>(Arrays.asList("IFG", "fO")));
         validDestinations.put("IFG", new HashSet<>(Arrays.asList("DecisionMaking")));
         validDestinations.put("fO", new HashSet<>(Arrays.asList("DecisionMaking")));
         return validDestinations;

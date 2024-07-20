@@ -36,9 +36,12 @@ public class IPS {
         } catch (Exception e) {
             workingMemory.setNumStage(1);
         }
- 
+        
+        
         
         client cliente = new client();
+        
+        
         if (relevantPosition == 0) {
             
             s.changeOriginAreaandDestination(s, "IPS", "FEF");

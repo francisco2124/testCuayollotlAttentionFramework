@@ -39,6 +39,13 @@ public class fO {
             List<String> primerosCinco = elementosConF.subList(0, 5);
             // El elemento en el medio de estos 5 elementos
             String elementoMedio = primerosCinco.get(2);
+            System.out.println("*************** "+elementoMedio+"***************");
+            System.out.println("*******Information**********");
+            System.out.println(information);
+            List<String> listaActualizada = new ArrayList<>(Arrays.asList(elementoMedio, "Incongruente"));
+            information.set(2, listaActualizada);
+            System.out.println("*******Actualizaciones*********");
+            System.out.println(information);
             // enviar a toma de desiciones
             s.changeOriginAreaandDestination(s, "fO", "DecisionMaking");
             client cliente = new client();

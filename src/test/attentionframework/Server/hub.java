@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import test.attentionframework.DecisionMaking;
 import test.attentionframework.Lobes.FrontalLobe.IFG;
+import test.attentionframework.Lobes.FrontalLobe.MFG;
 import test.attentionframework.Lobes.FrontalLobe.VLPFC;
 import test.attentionframework.Lobes.FrontalLobe.folderInferiorFrontalGirusIFG.fO;
 import test.attentionframework.spike.Spike;
@@ -103,6 +104,11 @@ public class hub  extends UnicastRemoteObject implements receiveData {
 
                 IFG area = new IFG();
                 area.reorientingOfAttention(s);
+            
+            }else if (elements.size() > 1 && "MFG".equals(elements.get(1))) {
+
+                MFG area = new MFG();
+                area.circuitBreaker(s);
             
             }else{
                 System.out.println("No se encontro el area de destino");

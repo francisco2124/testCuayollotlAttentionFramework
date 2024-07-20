@@ -35,8 +35,11 @@ public class TPJ {
             cliente.enviarSike(s, "SpecificArea", 1099);
             
         }else if(elements.size() > 0 && "STG".equals(elements.get(0))){
-            System.out.println(information);
-            
+            //System.out.println("*******Information**********");
+            //System.out.println(information);
+            s.changeOriginAreaandDestination(s, "TPJ", "DecisionMaking");
+            cliente.enviarSike(s, "Lobe", 1099);
+            /*
             List<String> infoTarget = (List<String>) information.get(2);
             String targetType = infoTarget.get(1);
             if ("Congruente".equals(targetType)) {
@@ -45,7 +48,7 @@ public class TPJ {
             }else{
                 s.changeOriginAreaandDestination(s, "TPJ", "fO");
                 cliente.enviarSike(s, "SpecificArea", 1099);
-            }
+            }*/
         }else{
             System.out.println(elements.get(0));
             System.out.println("No se tiene una funcionalidad para el area de origen");
